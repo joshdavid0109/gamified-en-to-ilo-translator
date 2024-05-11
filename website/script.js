@@ -12,6 +12,22 @@ function selectOption(option) {
 }
 
 $(document).ready(function() {
+    $.ajax({
+        url: 'http://127.0.0.1:5500',
+        type: 'GET',
+        dataType: 'json',
+        success: function(response) {
+            // Update the content of the randomWord div with the received random word
+            console.log(response.random_word)
+
+            console.log($('#word-to-translate').val());
+        },
+        error: function(xhr, status, error) {
+            // Handle error if the request fails
+            console.error('Error fetching random word:', error);
+        }
+    });
+
     $("#submit").on("click", function(event) {
         event.preventDefault(); // Prevent the default form submission behavior
 
