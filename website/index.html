@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiple Choice Quiz</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</head>
+<body>
+    <h1>Fetch Data from /users Endpoint</h1>
+    <input type="text" id="answer" name="answer">
+    <button id="fetchData">Fetch Data</button>
+    <div id="output"></div>
+
+    <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-6">
+            <form method="post" action="/users">
+              <div class="question">
+                <h4 id="word-to-translate"></h4>
+                <div class="options">
+                  <div class="option" onclick="selectOption(this)">Paris</div>
+                  <div class="option" onclick="selectOption(this)">Berlin</div>
+                  <div class="option" onclick="selectOption(this)">London</div>
+                  <div class="option" onclick="selectOption(this)">Rome</div>
+                </div>
+                <div class="submit-button">
+                  <button id="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <script src="script.js"></script>
+</body>
+</html>

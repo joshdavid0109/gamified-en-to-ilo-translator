@@ -1,0 +1,2 @@
+models/opus-mt-en-ilo/model.safetensors filter=lfs diff=lfs merge=lfs -text
+models/opus-mt-ilo-en/model.safetensors filter=lfs diff=lfs merge=lfs -text
