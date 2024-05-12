@@ -15,7 +15,10 @@ app = Flask(__name__)
 CORS(app, resources={r"/users": {"origins": "http://127.0.0.1:5500"}})
 CORS(app, resources={r"/translate": {"origins": "http://127.0.0.1:5500"}})
 CORS(app, resources={r"/easy": {"origins": "http://127.0.0.1:5500"}})
+CORS(app, resources={r"/medium": {"origins": "http://127.0.0.1:5500"}})
+CORS(app, resources={r"/hard": {"origins": "http://127.0.0.1:5500"}})
 CORS(app, resources={r"/user": {"origins": "http://127.0.0.1:5500"}})
+CORS(app, resources={r"/submitanswer": {"origins": "http://127.0.0.1:5500"}})
 CORS(app, resources={r"": {"origins": "http://127.0.0.1:5500"}})
 
 
@@ -107,6 +110,52 @@ def get_random_words(difficulty):
 
 # Flask routes...
 
+
+@app.route('/submitanswer', methods=['POST'])
+def submit_answer():
+    if request.method == 'POST':
+        # Retrieve data from the request body
+        data = request.json
+        selected_translation = data.get('selectedTranslation')
+        is_correct = data.get('isCorrect')
+
+        # Handle correct or incorrect answer
+        if is_correct:
+            # Handle correct answer
+            pass
+        else:
+            # Handle incorrect answer
+            pass
+
+        # Fetch new word based on the difficulty level
+        difficulty_level = get_difficulty_level(selected_translation)
+        if difficulty_level:
+            words = get_random_words(difficulty_level)
+            if words:
+                correct_word = words[0]
+                translation_choices = words[1:]
+                state = np.array([get_word_embeddings(word) for word in translation_choices])
+                action = agent.act(state)
+                chosen_word = translation_choices[action]
+                correct_translation = translator.translate(correct_word)
+                choices = [translator.translate(word) for word in words]
+                choices.remove(correct_translation)  # Remove correct translation from choices
+                random.shuffle(choices)
+                choices.insert(random.randint(0, len(choices)), correct_translation)  # Insert correct translation at random index
+                reward = 1 if chosen_word == correct_word else 0
+                agent.remember(state, action, reward, None, False)
+
+                return jsonify({
+                    "word": correct_word,
+                    "correct_answer": correct_translation,
+                    "choices": choices
+                }), 200
+            else:
+                return jsonify({"error": "Failed to fetch random words"}), 500
+        else:
+            return jsonify({"error": "Invalid translation"}), 400
+
+
 with app.app_context():
 
     @app.route('/user', methods=['GET', 'POST'])
@@ -153,35 +202,18 @@ with app.app_context():
 
 # Flask routes...
 
-if __name__ == '__main__':
-    app.run(debug=True)
-@app.route('/')
-def index():
-    return "test index"
 
-# Define a route for '/users'
-@app.route('/users', methods=['GET', 'POST'])
-def handle_users():
-    if request.method == 'GET':
-        users = ref.child('users').get()
-        return jsonify(users), 200
-    elif request.method == 'POST':
-        data = request.get_json()
-        # Process the data as needed
-        return "Data received successfully", 200
-
-# Define a route for /translate
-@app.route('/translate', methods=['GET', 'POST'])
-def translate():
-    data = request.json
-    print(data)
-    text = data.get('text')
-
-    if not text:
-        return jsonify({'error': 'Missing text field'}), 400
-
-    translated_text = translator.translate(text)
-    return jsonify({'translated_text': translated_text}), 200
+def get_difficulty_level(translation):
+    # Logic to determine difficulty level based on translation
+    # You can implement your logic here
+    # For now, let's assume the translation length determines difficulty
+    length = len(translation)
+    if length <= 5:
+        return 'easy'
+    elif 5 < length <= 8:
+        return 'medium'
+    else:
+        return 'hard'
 
 if __name__ == '__main__':
     app.run(debug=True)
