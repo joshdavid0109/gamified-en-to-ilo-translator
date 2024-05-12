@@ -1,127 +1,134 @@
 
-function selectOption(option) {
-
-    // Remove the selected class from all options
-    var options = document.getElementsByClassName('option');
-    for (var i = 0; i < options.length; i++) {
-      options[i].classList.remove('selected');
-    }
-  
-    // Add the selected class to the clicked option
-    option.classList.add('selected');
-}
 
 $(document).ready(function() {
-    $.ajax({
-        url: 'http://127.0.0.1:5500',
-        type: 'GET',
-        dataType: 'json',
-        success: function(response) {
-            // Update the content of the randomWord div with the received random word
-            console.log(response.random_word)
+    // Function to handle option selection
+    function selectOption(option) {
+        $('.option').removeClass('selected'); // Remove selected class from all options
+        $(option).addClass('selected'); // Add selected class to the clicked option
+    }
 
-            console.log($('#word-to-translate').val());
+    // Submit form event listener
+    $('#quiz-form').submit(function(event) {
+        event.preventDefault(); // Prevent the default form submission behavior
+
+        // Retrieve the selected option
+        var selectedOption = $('.option.selected');
+        var selectedTranslation = selectedOption.text();
+
+        // Retrieve the correct answer from the hidden input field
+        var correctAnswer = $('#word-to-translate').data('correct-answer');
+
+        // Check if the selected translation matches the correct answer
+        var isCorrect = (selectedTranslation === correctAnswer);
+
+        // Show the pop-up message based on correctness
+        if (isCorrect) {
+            $('#correctModal').modal('show');
+        } else {
+            $('#incorrectModal').modal('show');
+        }
+
+        // Send the selected translation and correctness to the server for further processing
+        $.ajax({
+            url: "http://127.0.0.1:5000/translate",
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify({ text: selectedTranslation, is_correct: isCorrect }),
+            success: function(data) {
+                console.log("Server response:", data);
+                // Handle server response as needed
+            },
+            error: function(xhr, status, error) {
+                console.error("Error:", error);
+            }
+        });
+    });
+
+    // Fetch a random word and its translations from the server
+    $.ajax({
+        url: "http://127.0.0.1:5000/easy",
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
+            console.log("Random word:", data.word);
+            // Display the random word on the page
+            $('#word-to-translate').text(data.word);
+            // Set the correct answer as a data attribute for later retrieval
+            $('#word-to-translate').data('correct-answer', data.correct_answer);
+
+            // Populate the options with translations
+            var options = $('.option');
+            $.each(options, function(index, option) {
+                $(option).text(data.choices[index]);
+            });
         },
         error: function(xhr, status, error) {
-            // Handle error if the request fails
-            console.error('Error fetching random word:', error);
+            console.error("Error fetching random word:", error);
         }
     });
 
-    $("#submit").on("click", function(event) {
-        event.preventDefault(); // Prevent the default form submission behavior
+     // Fetch a random word and its translations from the server
+     $.ajax({
+        url: "http://127.0.0.1:5000/medium",
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
+            console.log("Random word:", data.word);
+            // Display the random word on the page
+            $('#word-to-translate').text(data.word);
+            // Set the correct answer as a data attribute for later retrieval
+            $('#word-to-translate').data('correct-answer', data.correct_answer);
 
-        // Define the data to send in the POST request
-        const postData = {
-            text: $('#answer').val(),
-            target_language: 'ilo'
-        };
+            // Populate the options with translations
+            var options = $('.option');
+            $.each(options, function(index, option) {
+                $(option).text(data.choices[index]);
+            });
+        },
+        error: function(xhr, status, error) {
+            console.error("Error fetching random word:", error);
+        }
+    });
 
-        // Send a POST request to the /translate endpoint
-        fetch("http://127.0.0.1:5000/translate", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json" // Specify content type as JSON
-            },
-            body: JSON.stringify(postData) // Convert postData to JSON format
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Network response was not ok");
-            }
-            return response.json(); // Parse the JSON response
-        })
-        .then(data => {
+     // Fetch a random word and its translations from the server
+     $.ajax({
+        url: "http://127.0.0.1:5000/hard",
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
+            console.log("Random word:", data.word);
+            // Display the random word on the page
+            $('#word-to-translate').text(data.word);
+            // Set the correct answer as a data attribute for later retrieval
+            $('#word-to-translate').data('correct-answer', data.correct_answer);
+
+            // Populate the options with translations
+            var options = $('.option');
+            $.each(options, function(index, option) {
+                $(option).text(data.choices[index]);
+            });
+        },
+        error: function(xhr, status, error) {
+            console.error("Error fetching random word:", error);
+        }
+    });
+
+    // Click event listener for option selection
+    $('.option').click(function() {
+        selectOption(this);
+    });
+
+    $.ajax({
+        url: "http://127.0.0.1:5000/user",
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
             console.log(data)
-            // Display the translated text in the output div
-            // $("#word-to-translate").text(data.random_word);
-            // $("#output").text(data.translated_text);
-        })
-        .catch(error => {
-            console.error("Error translating text:", error);
-        });
+            $('#profile-name').text(data.username)
+            $('#score').text(data.points)
+        },
+        error: function(xhr, status, error) {
+            console.error("Error fetching random word:", error);
+        }
     });
 });
-
-
-
-// $(document).ready(function() {
-//     $("#submit").on("click", function(event) {
-
-//         event.preventDefault(); // Prevent the default form submission behavior
-
-//         // Define the data to send in the POST request
-//         const postData = {
-//             answer: $('#answer').val(),
-//         };
-
-//         // Create an array to hold the promises for the GET and POST requests
-//         const promises = [];
-
-//         // Send a GET request to the /users endpoint
-//         const getUsersPromise = fetch("http://127.0.0.1:5000/users", {
-//             method: "GET",
-//             headers: {
-//                 "Content-Type": "application/json" // Specify that we're sending JSON data
-//             }
-//         })
-//         .then(response => {
-//             if (!response.ok) {
-//                 throw new Error("Network response was not ok");
-//             }
-//             return response.json(); // Parse the JSON response
-//         })
-//         .then(data => {
-//             // Display the data in the output div
-//             $("#output").text(JSON.stringify(data));
-//         })
-//         .catch(error => {
-//             console.error("Error fetching data:", error);
-//         });
-
-//         // Add the GET request promise to the promises array
-//         promises.push(getUsersPromise);
-
-//         // Send a POST request to the /users endpoint
-//         const postUsersPromise = $.ajax({
-//             url: 'http://127.0.0.1:5000/users',
-//             type: 'POST',
-//             contentType: 'application/json',
-//             data: JSON.stringify(postData)
-//         });
-
-//         // Add the POST request promise to the promises array
-//         promises.push(postUsersPromise);
-
-//         // Execute both promises concurrently
-//         Promise.all(promises)
-//             .then(results => {
-//                 console.log('Both requests completed successfully');
-//                 console.log('GET request result:', results[0]);
-//                 console.log('POST request result:', results[1]);
-//             })
-//             .catch(error => {
-//                 console.error('Error executing promises:', error);
-//             });
-//     });
-// });
