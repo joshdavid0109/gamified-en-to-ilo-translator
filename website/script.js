@@ -1,5 +1,3 @@
-
-
 $(document).ready(function() {
     // Function to handle option selection
     function selectOption(option) {
@@ -21,114 +19,82 @@ $(document).ready(function() {
         // Check if the selected translation matches the correct answer
         var isCorrect = (selectedTranslation === correctAnswer);
 
+        // Send the selected translation and correctness to the server for further processing
+        fetch('/submit', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ 
+                selectedTranslation: selectedTranslation, 
+                isCorrect: isCorrect 
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data); // For debugging
+            // Handle server response as needed
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            // Handle errors
+        });
+
         // Show the pop-up message based on correctness
         if (isCorrect) {
             $('#correctModal').modal('show');
         } else {
             $('#incorrectModal').modal('show');
         }
-
-        // Send the selected translation and correctness to the server for further processing
-        $.ajax({
-            url: "http://127.0.0.1:5000/translate",
-            type: "POST",
-            contentType: "application/json",
-            data: JSON.stringify({ text: selectedTranslation, is_correct: isCorrect }),
-            success: function(data) {
-                console.log("Server response:", data);
-                // Handle server response as needed
-            },
-            error: function(xhr, status, error) {
-                console.error("Error:", error);
-            }
-        });
     });
 
     // Fetch a random word and its translations from the server
-    $.ajax({
-        url: "http://127.0.0.1:5000/easy",
-        type: "GET",
-        dataType: "json",
-        success: function(data) {
-            console.log("Random word:", data.word);
-            // Display the random word on the page
-            $('#word-to-translate').text(data.word);
-            // Set the correct answer as a data attribute for later retrieval
-            $('#word-to-translate').data('correct-answer', data.correct_answer);
+    function fetchWord(difficulty) {
+        $.ajax({
+            url: "http://127.0.0.1:5000/" + difficulty,
+            type: "GET",
+            dataType: "json",
+            success: function(data) {
+                console.log("Random word:", data.word);
+                // Display the random word on the page
+                $('#word-to-translate').text(data.word);
+                // Set the correct answer as a data attribute for later retrieval
+                $('#word-to-translate').data('correct-answer', data.correct_answer);
 
-            // Populate the options with translations
-            var options = $('.option');
-            $.each(options, function(index, option) {
-                $(option).text(data.choices[index]);
-            });
-        },
-        error: function(xhr, status, error) {
-            console.error("Error fetching random word:", error);
-        }
-    });
+                // Populate the options with translations
+                var options = $('.option');
+                $.each(options, function(index, option) {
+                    $(option).text(data.choices[index]);
+                });
+            },
+            error: function(xhr, status, error) {
+                console.error("Error fetching random word:", error);
+            }
+        });
+    }
 
-     // Fetch a random word and its translations from the server
-     $.ajax({
-        url: "http://127.0.0.1:5000/medium",
-        type: "GET",
-        dataType: "json",
-        success: function(data) {
-            console.log("Random word:", data.word);
-            // Display the random word on the page
-            $('#word-to-translate').text(data.word);
-            // Set the correct answer as a data attribute for later retrieval
-            $('#word-to-translate').data('correct-answer', data.correct_answer);
-
-            // Populate the options with translations
-            var options = $('.option');
-            $.each(options, function(index, option) {
-                $(option).text(data.choices[index]);
-            });
-        },
-        error: function(xhr, status, error) {
-            console.error("Error fetching random word:", error);
-        }
-    });
-
-     // Fetch a random word and its translations from the server
-     $.ajax({
-        url: "http://127.0.0.1:5000/hard",
-        type: "GET",
-        dataType: "json",
-        success: function(data) {
-            console.log("Random word:", data.word);
-            // Display the random word on the page
-            $('#word-to-translate').text(data.word);
-            // Set the correct answer as a data attribute for later retrieval
-            $('#word-to-translate').data('correct-answer', data.correct_answer);
-
-            // Populate the options with translations
-            var options = $('.option');
-            $.each(options, function(index, option) {
-                $(option).text(data.choices[index]);
-            });
-        },
-        error: function(xhr, status, error) {
-            console.error("Error fetching random word:", error);
-        }
-    });
+    // Fetch word for each difficulty level
+    fetchWord('easy');
+    fetchWord('medium');
+    fetchWord('hard');
 
     // Click event listener for option selection
     $('.option').click(function() {
         selectOption(this);
     });
 
+    // Fetch user data
     $.ajax({
         url: "http://127.0.0.1:5000/user",
         type: "GET",
         dataType: "json",
         success: function(data) {
-            console.log(data)
-            $('#profile-name').text(data.username)
-            $('#score').text(data.points)
+            console.log(data);
+            $('#profile-name').text(data.username);
+            $('#score').text(data.points);
         },
         error: function(xhr, status, error) {
-            console.error("Error fetching random word:", error);
+            console.error("Error fetching user data:", error);
         }
     });
 });
