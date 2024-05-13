@@ -214,6 +214,3 @@ def get_difficulty_level(translation):
         return 'medium'
     else:
         return 'hard'
-
-if __name__ == '__main__':
-    app.run(debug=True)
