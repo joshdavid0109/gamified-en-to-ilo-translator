@@ -1,4 +1,5 @@
-import firebase_admin, os, random
+import firebase_admin, os, random, requests
+import numpy as np
 
 # Helper function to get word embeddings (replace with actual implementation)
 def get_word_embeddings(word):
