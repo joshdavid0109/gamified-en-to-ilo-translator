@@ -2,6 +2,8 @@ from keras.models import Sequential
 from keras.layers import Dense
 from keras.optimizers import Adam
 from collections import deque
+import numpy as np
+import random
 
 class DQNAgent:
     def __init__(self, state_size, action_size):
