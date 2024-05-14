@@ -27,16 +27,15 @@ translator = Translator(to_lang='ilo', model_path=EN_ILO_MODEL_DIRECTORY)
 
 @ai_blueprint.route('/login', methods=['POST'])
 def login():
-    username = request.form.get('username')
-    password = request.form.get('password')
+    data = request.json
+    username = data.get('username')
+    password = data.get('password')
 
-    user_id = authenticate_user(username, password)
+    if not username or not password:
+        return jsonify({"success": False, "error": "Missing username or password"})
 
-    if user_id:
-        session['user_id'] = user_id
-        return jsonify({'success': True})
-    else:
-        return jsonify({'success': False, 'error': 'Invalid credentials'})
+    authentication_result = authenticate_user(username, password)
+    return authentication_result, 200, {'Content-Type': 'application/json'}
 
 @ai_blueprint.route('/submitanswer', methods=['POST'])
 def submitanswer():

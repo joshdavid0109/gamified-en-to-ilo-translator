@@ -1,6 +1,7 @@
 
 import firebase_admin, os, requests, random
 from firebase_admin import credentials, db
+import json
 
 # Initialize Firebase
 cred = credentials.Certificate('../../gamified-en-to-ilo-translator/ai-database-a2089-firebase-adminsdk-bogd7-808afea2db.json')
@@ -17,16 +18,17 @@ def authenticate_user(username, password):
         user_ref = ref.order_by_child('username').equal_to(username).get()
 
         if not user_ref:
-            return False, "User not found"
+            return json.dumps({"success": False, "error": "User not found"})
     
         user_id = list(user_ref.keys())[0]
         user_data = user_ref[user_id]
         if user_data['password'] == password:
-            return True, user_id
+            return json.dumps({"success": True, "user_id": user_id})
         else:
-            return False, "Incorrect password"
+            return json.dumps({"success": False, "error": "Incorrect password"})
     except Exception as e:
-        return False, str(e)
+        return json.dumps({"success": False, "error": str(e)})
+
 
 #test
 
