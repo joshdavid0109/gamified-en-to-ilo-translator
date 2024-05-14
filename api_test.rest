@@ -1,4 +1,1 @@
-GET https://translation.googleapis.com/v3/projects/AIzaSyDrCjKx_X_yOC2cBVsUMSwTfFgW87nVrQY/locations/global/supportedLanguages
-Content-Type: application/json
-
-
+GET https://translation.googleapis.com/v3/projects/caramel-galaxy-423217-u2/locations/global/supportedLanguages
