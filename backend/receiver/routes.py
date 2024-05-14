@@ -6,10 +6,13 @@ from firebase_admin import credentials, db
 from translate import Translator
 import numpy as np
 from services.DQNAagent import *
-
+from concurrent.futures import ThreadPoolExecutor
 
 ai_blueprint = Blueprint('ai', __name__)
 
+# Function to translate a single word
+def translate_word(word):
+    return translator.translate(word)
 
 # Initialize Firebase !!!! PALITAN YUNG  FILE PATH !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! v v v v
 cred = credentials.Certificate('../../gamified-en-to-ilo-translator/ai-database-a2089-firebase-adminsdk-bogd7-808afea2db.json')
@@ -52,7 +55,9 @@ def submitanswer():
             action = agent.act(state)
             chosen_word = translation_choices[action]
             correct_translation = translator.translate(correct_word)
-            choices = [translator.translate(word) for word in words]
+            # Translate all words synchronously
+            with ThreadPoolExecutor() as executor:
+                choices = list(executor.map(translate_word, words))
             choices.remove(correct_translation)  # Remove correct translation from choices
             random.shuffle(choices)
             choices.insert(random.randint(0, len(choices)), correct_translation)  # Insert correct translation at random index
