@@ -1,7 +1,4 @@
-POST http://127.0.0.1:5000/submitanswer
+GET https://translation.googleapis.com/v3/projects/AIzaSyDrCjKx_X_yOC2cBVsUMSwTfFgW87nVrQY/locations/global/supportedLanguages
 Content-Type: application/json
 
-{
-    "selectedTranslation": "asd",
-    "isCorrect": "asd"
-}
+

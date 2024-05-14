@@ -63,7 +63,7 @@ $(document).ready(function() {
                 // Handle server response as needed
     
                 // Update word and choices after submission
-                fetchWord('easy', updateWordAndChoices); // Change 'easy' to appropriate difficulty
+                fetchWord('medium', updateWordAndChoices); // Change 'easy' to appropriate difficulty
             },
             error: function(error) {
                 console.error("Error:", error);

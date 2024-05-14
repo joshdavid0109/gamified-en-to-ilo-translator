@@ -7,6 +7,11 @@ from translate import Translator
 import numpy as np
 from services.DQNAagent import *
 from concurrent.futures import ThreadPoolExecutor
+from flask import session
+
+# session['username'] = 'x'
+# session['points'] = 'x'
+# session['userid'] = 'x'
 
 ai_blueprint = Blueprint('ai', __name__)
 
@@ -115,8 +120,6 @@ def get_word(difficulty):
     else:
         return jsonify({"error": "Failed to fetch random words"}), 500
     
-
-# Flask routes...
 
 
 def get_difficulty_level(translation):
