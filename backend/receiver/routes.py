@@ -7,26 +7,25 @@ import numpy as np
 from services.DQNAagent import *
 from concurrent.futures import ThreadPoolExecutor
 from flask import session
+from firebase_handler import *
 
-# session['username'] = 'x'
-# session['points'] = 'x'
-# session['userid'] = 'x'
 
 ai_blueprint = Blueprint('ai', __name__)
-
-
-
-
 
 #Define path to models
 EN_ILO_MODEL_DIRECTORY = 'models/opus-mt-ilo-en'
 ILO_EN_MODEL_DIRECTORY = 'models/opus-mt-en-ilo'
 RANDOM_WORD_API_URL = ' https://random-word-form.herokuapp.com/random/noun?count=4'
-
 translator = Translator(to_lang='ilo', model_path=EN_ILO_MODEL_DIRECTORY)
 
 
-@app.route('/login', methods=['POST'])
+
+
+
+
+
+
+@ai_blueprint.route('/login', methods=['POST'])
 def login():
     username = request.form.get('username')
     password = request.form.get('password')

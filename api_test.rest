@@ -1,7 +1,7 @@
-POST http://127.0.0.1:5000/submitanswer
+POST http://127.0.0.1:5000/login
 Content-Type: application/json
 
 {
-    "selectedTranslation": "kjdfvjdnrvjndrkvjndrvjnd",
-    "isCorrect": "asd"
+    "username": "asd",
+    "password": "asd"
 }
