@@ -3,7 +3,6 @@ from flask import Blueprint, request, jsonify
 from services.helper import *
 import firebase_admin, os, requests, random
 from firebase_admin import credentials, db
-from translate import Translator
 import numpy as np
 from services.DQNAagent import *
 from concurrent.futures import ThreadPoolExecutor
@@ -15,18 +14,9 @@ from flask import session
 
 ai_blueprint = Blueprint('ai', __name__)
 
-# Function to translate a single word
-def translate_word(word):
-    return translator.translate(word)
 
-# Initialize Firebase !!!! PALITAN YUNG  FILE PATH !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! v v v v
-cred = credentials.Certificate('../../gamified-en-to-ilo-translator/ai-database-a2089-firebase-adminsdk-bogd7-808afea2db.json')
-firebase_admin.initialize_app(cred, {
-    'databaseURL': 'https://ai-database-a2089-default-rtdb.asia-southeast1.firebasedatabase.app/'
-})
 
-# Get a reference to the Firebase Realtime Database
-ref = db.reference()
+
 
 #Define path to models
 EN_ILO_MODEL_DIRECTORY = 'models/opus-mt-ilo-en'
@@ -34,6 +24,20 @@ ILO_EN_MODEL_DIRECTORY = 'models/opus-mt-en-ilo'
 RANDOM_WORD_API_URL = ' https://random-word-form.herokuapp.com/random/noun?count=4'
 
 translator = Translator(to_lang='ilo', model_path=EN_ILO_MODEL_DIRECTORY)
+
+
+@app.route('/login', methods=['POST'])
+def login():
+    username = request.form.get('username')
+    password = request.form.get('password')
+
+    user_id = authenticate_user(username, password)
+
+    if user_id:
+        session['user_id'] = user_id
+        return jsonify({'success': True})
+    else:
+        return jsonify({'success': False, 'error': 'Invalid credentials'})
 
 @ai_blueprint.route('/submitanswer', methods=['POST'])
 def submitanswer():
@@ -60,9 +64,10 @@ def submitanswer():
             action = agent.act(state)
             chosen_word = translation_choices[action]
             correct_translation = translator.translate(correct_word)
-            # Translate all words synchronously
+
             with ThreadPoolExecutor() as executor:
                 choices = list(executor.map(translate_word, words))
+
             choices.remove(correct_translation)  # Remove correct translation from choices
             random.shuffle(choices)
             choices.insert(random.randint(0, len(choices)), correct_translation)  # Insert correct translation at random index
