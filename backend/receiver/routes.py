@@ -10,8 +10,9 @@ from services.DQNAagent import *
 
 ai_blueprint = Blueprint('ai', __name__)
 
+
 # Initialize Firebase !!!! PALITAN YUNG  FILE PATH !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! v v v v
-cred = credentials.Certificate(r'D:\flask_test\ai-database-a2089-firebase-adminsdk-bogd7-808afea2db.json')
+cred = credentials.Certificate('../../gamified-en-to-ilo-translator/ai-database-a2089-firebase-adminsdk-bogd7-808afea2db.json')
 firebase_admin.initialize_app(cred, {
     'databaseURL': 'https://ai-database-a2089-default-rtdb.asia-southeast1.firebasedatabase.app/'
 })
