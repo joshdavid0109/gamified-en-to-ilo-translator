@@ -1,1 +1,7 @@
-GET https://translation.googleapis.com/v3/projects/caramel-galaxy-423217-u2/locations/global/supportedLanguages
+POST http://127.0.0.1:5000/login
+Content-Type: application/json
+
+{
+    "username": "kiko123",
+    "password": "kiko123"
+}

@@ -1,5 +1,6 @@
 import firebase_admin, os, random, requests
 import numpy as np
+from translate import Translator
 
 # Helper function to get word embeddings (replace with actual implementation)
 def get_word_embeddings(word):
@@ -22,3 +23,5 @@ def get_random_words(difficulty):
     else:
         return None
 
+def translate_word(word):
+    return translator.translate(word)
