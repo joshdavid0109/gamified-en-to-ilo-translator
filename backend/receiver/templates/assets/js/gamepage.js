@@ -15,6 +15,24 @@ async function fetchData() {
     }
 }
 
+// Function to handle correct answer modal
+function handleCorrectAnswerModal(isCorrect) {
+    // Show alert indicating correctness
+    if (isCorrect) {
+        alert('Congratulations! Your answer is correct.');
+    } else {
+        alert('Oops! Your answer is incorrect.');
+    }
+
+    // Set all buttons back to loading state
+    const buttons = document.querySelectorAll('.ripple-effect');
+    buttons.forEach(button => {
+        button.textContent = 'loading...';
+    });
+
+    // Execute updateContent
+    updateContent();
+}
 
 // Define a function to update the HTML content with the fetched data
 async function updateContent() {
@@ -28,10 +46,25 @@ async function updateContent() {
         // Update choices
         const buttons = document.querySelectorAll('.ripple-effect');
         buttons.forEach((button, index) => {
+            // Remove existing event listener
+            button.removeEventListener('click', handleClick);
+
             button.textContent = data.choices[index];
+            // Add event listener to check correctness
+            button.addEventListener('click', handleClick);
         });
+
+        // Function to handle button click
+        function handleClick() {
+            if (this.textContent === data.correct_answer) {
+                // Correct answer
+                handleCorrectAnswerModal(true);
+            } else {
+                // Incorrect answer
+                handleCorrectAnswerModal(false);
+            }
+        }
     }
 }
 
-// Call the updateContent function initially
-updateContent();
+updateContent()
