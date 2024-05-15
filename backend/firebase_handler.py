@@ -23,7 +23,7 @@ def authenticate_user(username, password):
         user_id = list(user_ref.keys())[0]
         user_data = user_ref[user_id]
         if user_data['password'] == password:
-            return json.dumps({"success": True, "user_id": user_id})
+            return json.dumps({"success": True, "user_id": user_id, "username": user_data['username'] , "points": user_data['points'] })
         else:
             return json.dumps({"success": False, "error": "Incorrect password"})
     except Exception as e:
