@@ -66,7 +66,7 @@ def aboutus():
     
 @ai_blueprint.route('/gamepage')
 def gamepage():
-    return render_template('index.html')
+    return render_template('gamepage.html')
 
 @ai_blueprint.route('/submitanswer', methods=['POST'])
 def submitanswer():
