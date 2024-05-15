@@ -15,27 +15,16 @@ async function fetchData() {
     }
 }
 
-// Function to handle correct answer modal
-function handleCorrectAnswerModal(isCorrect) {
-    // Show alert indicating correctness
-    if (isCorrect) {
-        alert('Congratulations! Your answer is correct.');
-    } else {
-        alert('Oops! Your answer is incorrect.');
-    }
-
-    // Set all buttons back to loading state
-    const buttons = document.querySelectorAll('.ripple-effect');
-    buttons.forEach(button => {
-        button.textContent = 'loading...';
-    });
-
-    // Execute updateContent
-    updateContent();
-}
-
 // Define a function to update the HTML content with the fetched data
 async function updateContent() {
+
+    // Clear all event listeners
+    const buttons = document.querySelectorAll('.ripple-effect');
+    buttons.forEach(button => {
+        const newButton = button.cloneNode(true);
+        button.parentNode.replaceChild(newButton, button);
+    });
+
     const data = await fetchData();
 
     if (data) {
@@ -46,25 +35,39 @@ async function updateContent() {
         // Update choices
         const buttons = document.querySelectorAll('.ripple-effect');
         buttons.forEach((button, index) => {
-            // Remove existing event listener
-            button.removeEventListener('click', handleClick);
-
             button.textContent = data.choices[index];
             // Add event listener to check correctness
-            button.addEventListener('click', handleClick);
+            button.addEventListener('click', () => {
+                if (button.textContent === data.correct_answer) {
+                    // Correct answer
+                    alert("your answer is correct, you gained n points");
+                    setToLoading()
+                    updateContent()
+                } else {
+                    alert("your answer is wrong!, you lost n points ");
+                    setToLoading()
+                    updateContent()
+                }
+            });
         });
-
-        // Function to handle button click
-        function handleClick() {
-            if (this.textContent === data.correct_answer) {
-                // Correct answer
-                handleCorrectAnswerModal(true);
-            } else {
-                // Incorrect answer
-                handleCorrectAnswerModal(false);
-            }
-        }
     }
 }
 
-updateContent()
+function setToLoading() {
+    // Set buttons' text content to "loading..."
+    const buttons = document.querySelectorAll('.ripple-effect');
+    buttons.forEach(button => {
+        button.textContent = 'loading...';
+    });
+
+    // Set word and round text content to "loading..."
+    const wordElement = document.querySelector('h1[data-aos="fade-right"]');
+    wordElement.textContent = 'loading...';
+
+    const roundElement = document.querySelector('p[data-aos="fade-right"]');
+    roundElement.textContent = 'round: loading...';
+}
+
+
+// Call the updateContent function initially
+updateContent();
