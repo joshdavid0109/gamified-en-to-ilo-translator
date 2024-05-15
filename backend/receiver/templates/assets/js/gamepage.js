@@ -40,11 +40,13 @@ async function updateContent() {
             button.addEventListener('click', () => {
                 if (button.textContent === data.correct_answer) {
                     // Correct answer
-                    alert("your answer is correct, you gained n points");
+                    const modal = new bootstrap.Modal(document.getElementById('correctModal'));
+                    modal.show();
                     setToLoading()
                     updateContent()
                 } else {
-                    alert("your answer is wrong!, you lost n points ");
+                    const modal = new bootstrap.Modal(document.getElementById('wrongModal'));
+                    modal.show();
                     setToLoading()
                     updateContent()
                 }

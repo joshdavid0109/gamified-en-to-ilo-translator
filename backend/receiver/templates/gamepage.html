@@ -56,15 +56,46 @@
                     </div>
                 </div>
             </div>
-            <div id="correctAnswerModal" class="modal">
-                <div class="modal-content">
-                    <span class="close">&times;</span>
-                    <p>Congratulations! Your answer is correct.</p>
-                </div>
-            </div>
+            
         </header>
-        <section class="py-5"></section>
-    </div>
+        <div class="modal fade" id="correctModal"tabindex="-1">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">CORRECT!</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <p>Your answer is correct! you gained 35 points</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal fade" id="wrongModal"tabindex="-1">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">WRONG!</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <p>Your answer is wrong! you lost 25 points</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        
+
+
+        </div>
     <script src="./assets/js/gamepage.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/bs-init.js"></script>

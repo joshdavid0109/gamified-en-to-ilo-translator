@@ -5,7 +5,7 @@ import json
 
 # Initialize Firebase
 # cred = credentials.Certificate('../../flask_test/ai-database-a2089-firebase-adminsdk-bogd7-808afea2db.json')
-cred = credentials.Certificate('../../gamified-en-to-ilo-translator/ai-database-a2089-firebase-adminsdk-bogd7-808afea2db.json')
+cred = credentials.Certificate('ai-database-a2089-firebase-adminsdk-bogd7-808afea2db.json')
 firebase_admin.initialize_app(cred, {
     'databaseURL': 'https://ai-database-a2089-default-rtdb.asia-southeast1.firebasedatabase.app/'
 })
@@ -49,7 +49,7 @@ points_tiers = {
     (1501, 2000): 'Proficient',
     (2001, 3000): 'Master',
     (3001, 5000): 'Maestro',
-    (5001, 7500): 'Maestro',
+    (5001, 7500): 'Maestro +',
     (7501, 10000): 'Virtuoso'
 }
 

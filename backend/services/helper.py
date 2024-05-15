@@ -5,6 +5,7 @@ import random
 
 EN_ILO_MODEL_DIRECTORY = '../models/opus-mt-ilo-en'
 ILO_EN_MODEL_DIRECTORY = '../models/opus-mt-en-ilo'
+FINE_ILO_EN_MODEL_DIRECTORY = '../models/fine_tuned-opus-mt-en-ilo'
 RANDOM_WORD_API_URL = ' https://random-word-form.herokuapp.com/random/noun?count=4'
 
 translator = Translator(to_lang='ilo', model_path=EN_ILO_MODEL_DIRECTORY)
@@ -19,7 +20,7 @@ def get_random_words(difficulty):
         RANDOM_WORD_API_URL = 'https://random-word-form.herokuapp.com/random/adjective?count=4'
     elif difficulty == 'medium':
         # TODO CHANGE PATH
-        file_path = "C:/Users/franz/vscode/gam/gamified-en-to-ilo-translator/en_normalized.txt"
+        file_path = "services/en_normalized.txt"
         random_lines = get_random_lines(file_path, 4)
         print(random_lines)
         return random_lines
