@@ -7,5 +7,5 @@ pip install flask flask_cors firebase_admin translate
 cd backend
 python main.py
 
-**change din pala directory nung ai database json**
+then go to http://127.0.0.1:5000/
 ```
