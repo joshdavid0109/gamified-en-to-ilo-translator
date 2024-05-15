@@ -1,8 +1,8 @@
-POST http://127.0.0.1:5000/login
+POST http://127.0.0.1:5000/submitanswer
 Content-Type: application/json
 
 {
-    "username": "kiko123",
-    "password": "kiko123"
+    "selectedTranslation": "sssssssssssssssssss",
+    "isCorrect": "true"
 }
 

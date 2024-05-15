@@ -8,15 +8,11 @@ from services.DQNAagent import *
 from concurrent.futures import ThreadPoolExecutor
 from flask import session, render_template, url_for, redirect
 from firebase_handler import *
+import math
+from math import log
 
 
 ai_blueprint = Blueprint('ai', __name__)
-
-#Define path to models
-EN_ILO_MODEL_DIRECTORY = 'models/opus-mt-ilo-en'
-ILO_EN_MODEL_DIRECTORY = 'models/opus-mt-en-ilo'
-RANDOM_WORD_API_URL = ' https://random-word-form.herokuapp.com/random/noun?count=4'
-translator = Translator(to_lang='ilo', model_path=EN_ILO_MODEL_DIRECTORY)
 
 
 @ai_blueprint.route('/')
@@ -68,51 +64,19 @@ def aboutus():
 def gamepage():
     return render_template('gamepage.html')
 
+# return poitns (+ or -)
 @ai_blueprint.route('/submitanswer', methods=['POST'])
 def submitanswer():
     data = request.json
-    selected_translation = data.get('selectedTranslation')
-    is_correct = data.get('isCorrect')
+    
+    selected_translation = data.get("selectedTranslation", "")
+    is_correct = data.get("isCorrect", "").lower()
+    
+    score = calculate_score(selected_translation, is_correct)
+    
+    return jsonify({"score": score})
 
-    # Handle correct or incorrect answer
-    if is_correct:
-        # Handle correct answer
-        
-        pass
-    else:
-        # Handle incorrect answer
-        pass
 
-    # Fetch new word based on the difficulty level
-    difficulty_level = get_difficulty_level(selected_translation)
-    if difficulty_level:
-        words = get_random_words(difficulty_level)
-        if words:
-            correct_word = words[0]
-            translation_choices = words[1:]
-            state = np.array([get_word_embeddings(word) for word in translation_choices])
-            action = agent.act(state)
-            chosen_word = translation_choices[action]
-            correct_translation = translator.translate(correct_word)
-
-            with ThreadPoolExecutor() as executor:
-                choices = list(executor.map(translate_word, words))
-
-            choices.remove(correct_translation)  # Remove correct translation from choices
-            random.shuffle(choices)
-            choices.insert(random.randint(0, len(choices)), correct_translation)  # Insert correct translation at random index
-            reward = 1 if chosen_word == correct_word else 0
-            agent.remember(state, action, reward, None, False)
-
-            return jsonify({
-                "word": correct_word,
-                "correct_answer": correct_translation,
-                "choices": choices
-            }), 200
-        else:
-            return jsonify({"error": "Failed to fetch random words"}), 500
-    else:
-        return jsonify({"error": "no difficulty l"})
 
 @ai_blueprint.route('/user', methods=['GET', 'POST'])
 def get_user():
@@ -169,3 +133,49 @@ def get_difficulty_level(translation):
     else:
         return 'hard'
 
+
+
+# @ai_blueprint.route('/submitanswer', methods=['POST'])
+# def submitanswer():
+#     data = request.json
+#     selected_translation = data.get('selectedTranslation')
+#     is_correct = data.get('isCorrect')
+
+#     # Handle correct or incorrect answer
+#     if is_correct:
+#         # Handle correct answer
+#         pass
+#     else:
+#         # Handle incorrect answer
+#         pass
+
+#     # Fetch new word based on the difficulty level
+#     difficulty_level = get_difficulty_level(selected_translation)
+#     if difficulty_level:
+#         words = get_random_words(difficulty_level)
+#         if words:
+#             correct_word = words[0]
+#             translation_choices = words[1:]
+#             state = np.array([get_word_embeddings(word) for word in translation_choices])
+#             action = agent.act(state)
+#             chosen_word = translation_choices[action]
+#             correct_translation = translator.translate(correct_word)
+
+#             with ThreadPoolExecutor() as executor:
+#                 choices = list(executor.map(translate_word, words))
+
+#             choices.remove(correct_translation)  # Remove correct translation from choices
+#             random.shuffle(choices)
+#             choices.insert(random.randint(0, len(choices)), correct_translation)  # Insert correct translation at random index
+#             reward = 1 if chosen_word == correct_word else 0
+#             agent.remember(state, action, reward, None, False)
+
+#             return jsonify({
+#                 "word": correct_word,
+#                 "correct_answer": correct_translation,
+#                 "choices": choices
+#             }), 200
+#         else:
+#             return jsonify({"error": "Failed to fetch random words"}), 500
+#     else:
+#         return jsonify({"error": "no difficulty l"})
