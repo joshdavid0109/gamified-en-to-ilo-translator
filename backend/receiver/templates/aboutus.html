@@ -26,11 +26,11 @@
                 <div class="container"><a class="navbar-brand text-success" href="#header"><i class="fa fa-leaf fa-2x"></i>&nbsp;KAILIAN</a><button data-bs-toggle="collapse" class="navbar-toggler collapsed" data-bs-target="#navcol-2"><span></span><span></span><span></span></button>
                     <div class="collapse navbar-collapse" id="navcol-2">
                         <ul class="navbar-nav ms-auto">
-                            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                            <li class="nav-item"><a class="nav-link" href="leaderboard.html">Leaderboard</a></li>
-                            <li class="nav-item"><a class="nav-link" href="aboutus.html">About us</a></li>
-                            <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">op</a>
-                                <div class="dropdown-menu"><a class="dropdown-item" href="#">First Item</a><a class="dropdown-item" href="#">Second Item</a><a class="dropdown-item" href="#">Third Item</a></div>
+                            <li class="nav-item"><a class="nav-link" href="{{ url_for('ai.index') }}">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ url_for('ai.leaderboards') }}">Leaderboard</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ url_for('ai.aboutus') }}">About us</a></li>
+                            <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">logout</a>
+                                <div class="dropdown-menu"><a class="dropdown-item" href="{{ url_for('ai.logout') }}">LOGOUT</a><a class="dropdown-item" href="#">s</a><a class="dropdown-item" href="#">s</a></div>
                             </li>
                         </ul>
                     </div>

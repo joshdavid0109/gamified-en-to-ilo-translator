@@ -25,10 +25,10 @@
                     <div class="collapse navbar-collapse" id="navcol-2">
                         <ul class="navbar-nav ms-auto">
                             <li class="nav-item"><a class="nav-link" href="{{ url_for('ai.index') }}">Home</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#">Leaderboard</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#">About us</a></li>
-                            <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">op</a>
-                                <div class="dropdown-menu"><a class="dropdown-item" href="{{ url_for('ai.logout') }}">LOGOUT</a><a class="dropdown-item" href="#">Second Item</a><a class="dropdown-item" href="#">Third Item</a></div>
+                            <li class="nav-item"><a class="nav-link" href="{{ url_for('ai.leaderboards') }}">Leaderboard</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ url_for('ai.aboutus') }}">About us</a></li>
+                            <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#">logout</a>
+                                <div class="dropdown-menu"><a class="dropdown-item" href="{{ url_for('ai.logout') }}">LOGOUT</a><a class="dropdown-item" href="#">s</a><a class="dropdown-item" href="#">s</a></div>
                             </li>
                         </ul>
                     </div>
@@ -39,8 +39,8 @@
                     <div class="row flex-lg-row-reverse align-items-center g-5 py-5" style="color: var(--bs-white);width: 100%;">
                         <div class="col-10 col-sm-8 col-lg-6"><img class="img-fluid d-block mx-lg-auto" data-aos="fade" data-aos-duration="900" src="assets/img/dsBMoDrTqHYi9brbVsFU--1--u20xx-removebg-preview.png" width="700" height="500" loading="lazy"></div>
                         <div class="col-lg-6">
-                            <h1 data-aos="fade-right" data-aos-duration="800" data-aos-delay="150" class="display-5 fw-bold lh-1 mb-3">Darren Franz</h1>
-                            <p data-aos="fade-right" data-aos-duration="800" data-aos-delay="450" class="lead">Ai description asd asd a d</p>
+                            <h1 data-aos="fade-right" data-aos-duration="800" data-aos-delay="150" class="display-5 fw-bold lh-1 mb-3">{{ session['username'] }}</h1>
+                            <p data-aos="fade-right" data-aos-duration="800" data-aos-delay="450" class="lead">your points: {{ session['points'] }}</p>
                             <div class="d-grid gap-2 d-md-flex justify-content-md-start">
                                 <button class="btn btn-light btn-lg text-uppercase border rounded shadow px-4 me-md-2" data-aos="fade-right" data-aos-duration="800" data-aos-delay="900" type="button" style="font-family: Roboto, sans-serif;font-weight: bold;color: var(--bs-gray-900);">Play now</button></div>
                         </div>

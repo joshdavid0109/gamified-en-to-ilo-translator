@@ -56,6 +56,14 @@ def logout():
     session.clear()
     return redirect(url_for('ai.index'))
 
+@ai_blueprint.route('/leaderboards')
+def leaderboards():
+    return render_template('leaderboard.html')
+
+@ai_blueprint.route('/aboutus')
+def aboutus():
+    return render_template('aboutus.html')
+
 @ai_blueprint.route('/submitanswer', methods=['POST'])
 def submitanswer():
     data = request.json
