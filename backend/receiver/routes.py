@@ -57,6 +57,7 @@ def get_choices():
     translation_choices = words[1:]
 
     correct_translation = translator.translate(correct_word)
+    print(correct_translation)
     with ThreadPoolExecutor() as executor:
         choices = list(executor.map(translate_word, words))
     choices.remove(correct_translation)
