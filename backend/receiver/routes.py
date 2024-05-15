@@ -63,6 +63,10 @@ def leaderboards():
 @ai_blueprint.route('/aboutus')
 def aboutus():
     return render_template('aboutus.html')
+    
+@ai_blueprint.route('/gamepage')
+def gamepage():
+    return render_template('gamepage.html')
 
 @ai_blueprint.route('/submitanswer', methods=['POST'])
 def submitanswer():
