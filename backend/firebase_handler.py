@@ -52,6 +52,8 @@ points_tiers = {
     (7501, 10000): 'Virtuoso'
 }
 
+def updatePoints(points):
+    
 
 # Function to update tier based on points
 def update_tier(current_data, points):
@@ -69,7 +71,7 @@ def update_tier(current_data, points):
 
     return current_data
 
-# Example usage
+# Example usage (galing sa user data)
 current_data = {'points': 20, 'tier': 'Beginner'}
 current_data = update_tier(current_data, 3)
 print(current_data)
