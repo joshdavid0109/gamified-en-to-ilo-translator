@@ -1,0 +1,633 @@
+Anytime
+Sure
+It's okay.
+Never metion.
+Mention it.
+Glad to have helped.
+It's all gray.
+Cool.
+Sure thing.
+Not at all.
+No worries
+It was nothing.
+My pleasure.
+Glad to be of any assistance.
+Oh anytime.
+Don't mention it.
+You got it.
+Happy to serve you.
+No problem.
+Of course.
+It was nothing.
+You are welcome.
+You got it.
+Glad to help.
+That's all right.
+It's alright.
+Not a problem.
+That's absolutely fine.
+Certainly
+I'm sorry I'm busy.
+That's not going to work for me.
+Maybe next time.
+I'd love to – but can't.
+My body say yes, but my heart say no.
+That doesn't work for me.
+I wish I could make it work.
+I really appreciate you asking me, bu t I can't do it.
+I'm not able to commit to that right now.
+I just don't have that to give right now.
+I want to, but I'm unable to.
+I'd like to, but I know I'II regret it.
+I'm in a season of NO.
+Sounds tempting, but I'II have to pass.
+I am honoured that you asked me but I can't do it.
+I really appreciate you asking me but I can't commit to that right now.
+No, thanks.
+Thanks for thinking of me but I can't
+Unfortunately not.
+I'm afraid I can't.
+Maybe another time.
+Not possible.
+By no means.
+I'm slammed.
+Not for me, thanks.
+Unfortunately, that's not something I can do at this time.
+I'm really booked.
+Thanks for thinking of me. I really wish I could.
+That's not an option.
+This is not negotiable.
+I think not.
+If only it worked, but ...
+Not for me my friend, thanks.
+I have something else.
+Certainly not.
+Nope
+Nah
+Sorry
+Not now
+Not this time
+By no means.
+I'm taking some time.
+That's better than ever.
+That's first class work.
+I'm impressed.
+That's clever!
+Way to go.
+Outstanding!
+You're doing fine.
+That's a real work of art.
+You certainly did well today.
+Way to go.
+I like that.
+That's it.
+Marvelous!
+I think you're doing the right thing.
+That's how to handle that.
+Now that's what I call a fine job.
+That's great.
+Right on!
+You're really improving.
+You're doing beautifully!
+SUPERB!
+Good remembering.
+You've got that down pat.
+You certainly did well today.
+That kind of work makes me happy.
+It's such a pleasure to teach when
+You've just about mastered that.
+That's an interesting way of looking at it.
+That's really nice.
+You are the best.
+You are genius.
+That's the way.
+You are doing beautifully.
+You are the just about mastered that.
+I'm happy to see you working like that.
+That is the better than ever.
+You are really improving.
+You work like that!
+Congratulations!
+Couldn't have done it better myself.
+I've never seen anyone do it better.
+Now you have the hang of it!
+That's the best ever.
+I believe...
+I would say...
+I consider...
+To me...
+I feel...
+In my opinion...
+I assume...
+As I see it...
+To my mind...
+From my point of view...
+It is my view...
+If you ask me...
+It's my belief that...
+I honestly believe that...
+To my way of thinking...
+In my point of view...
+As far as I can tell...
+As far as I'm concerned...
+The way I see things is that...
+It seems to me that...
+Hello
+Hey
+Bonjour
+Howdy?
+How are ya?
+Hi
+Good evening
+Good morning
+Long time, no see
+What are you been up to?
+How have you been?
+What's up?
+Greeting
+Good to see you
+Hey, boo
+How are things?
+What have you been up to?
+Look what the cat dragged in!
+It is nice to meet you
+What's going on?
+Stay safe
+Welcome
+How are you feeling today?
+Hey there?
+Nice to see you again?
+Look who it is!
+Good morning sir, how are you?
+Greetings and salutations!
+Good day
+Great to see you.
+Good afternoon.
+Whatcha
+What's sizzling?
+What's shaking?
+Yo!
+Hello!
+Wazzup!
+Whatcha doin?
+What's up buttercup?
+How's life treating you?
+Anything new with you?
+Hi
+Howdy
+what's poppin?
+What's cookin'?
+Sup?
+What's new?
+What are you doing?
+What's going on?
+What are you up to?
+I agree.
+Yeah
+Yep
+Absolutely!,
+I guess so.
+Yup
+Definitely.
+I had that same idea.
+I think you are totally right about that.
+I fee that way too.
+I agree with you.
+That's exactly how I feel.
+I'd go along with that.
+That's just what I was thinking.
+Of course.
+That's exactly what I was thinking.
+Sure.
+We are of one mind.
+You can say that again.
+I could not agree with you more my friend.
+You've hit the nail on the head.
+You got it dude.
+Our thoughts are absolutely parallel.
+You are so right.
+That's right.
+Agreed.
+You took the words right out of my mouth.
+We're in accord.
+You're absolutely right.
+Exactly!
+You got it.
+I could not have said it any better.
+Our thoughts are parallel.
+My thoughts exactly.
+Affirmative.
+No doubt about it.
+I see what you mean...
+So do I.
+Approved
+Correct
+Surely
+Satisfactory
+Acceptable
+Tolerable
+Passable
+Adequate
+Fine
+Good
+Not bad
+Up to scratch
+Permitted
+Accurate
+Green light
+Agree to
+Go
+Yep
+Certify
+Moderate
+Respectable
+Pleasing
+Of course
+No problem
+Assent
+Alright
+Yes
+Pass
+Confirm
+Okeydokey
+Notarize
+Authorize
+Endorse
+Best of luck!
+Break a leg!
+Best wishes.
+Godspeed
+I hope everything will be all right.
+I hope things will turn out fine..
+Blow them away!
+You'll do great!
+Wishing you lots of luck!
+May the force be with you.
+You'll do great.
+Knock them dead!
+You are going to be amazing!
+Wishing you all the best!
+I wish you luck!
+Fingers crossed!
+Wishing you a lot of luck!
+You were made for this!
+I hope things will work out all right.
+Sorry
+Excuse me?
+Pardon?
+Could you please repeat that?
+I'm sorry, I don't understand. Could you repeat that, please?
+Let me repeat that just to make sure?
+Do you mind repeating that?
+Would you mind repeating that?
+Sorry, I didn't hear what you said.
+Sorry, I didn't catch that.
+I don't believe it!
+What a pain!
+Is it possible?
+I could really do without it.
+It really gets on my nerves.
+I have had it up to here with...
+I'm sick and tired of...
+I'm fed up with it.
+Damn it.
+Rubbish!
+Just you wait!
+Get out of my way!
+That's the last straw!
+Mind your own business!
+It's none of your business!
+Shame on you!
+I don't think that's very clever!
+I get so irritated by Tom I can't be around her.
+I can't stand it any longer!
+Please I'm so mad right now I can't talk to you.
+Oh gosh!
+O.M.G!
+Goodness gracious me!
+Oh my!
+Holy moly
+For heaven's sake!
+Oh Jesus!
+Blimey!
+For the love of God!
+Gosh almighty!
+Shitting Hell!
+That is bare sick!
+Heavens to Betsy!
+Holy crap
+Oh my goodness!
+Oh boy!
+Please don't take this badly but...
+It is my unfortunate duty to tell you that ...
+I'm afraid I've got some bad news ...
+I regret to inform you that ...
+I'm afraid to inform you of ...
+There is no easy way to say this but ...
+I'm sorry to have to tell you this but ...
+I've got some bad news I'm afraid ...
+I'm afraid I've got something sad to tell you ...
+I feel realy bad having to tell you this but ...
+I don't know how to announce this but ...
+I'm afraid I/we won't be able to ...
+Unfortunately ...
+I tried ... but ...
+I need to warn you that I have some bad news ...
+How to dreadful! I'm really sorry to hear that.
+How unfortunate! That's really tough on you!
+That's awful.
+Sorry, that's rough/awful/disappointing.
+That must have been awful.
+Anytime You need to talk, Just call me.
+My goodness! What a shock! It's hard to believe.
+It's hard to take but I understand your opinion.
+Please accept my deepest sympathy
+If There's anything I can do, Just let me know.
+That must be awful
+Poor you, I do sympathize you
+What a shame
+What a pity
+That's sad indeed. I can imagine how you feel.
+Thanks.
+Cheers.
+Thank you very much.
+I really appreciate it.
+You've made my day.
+You are great.
+I'm in your debt.
+You are the best.
+Thank you so much.
+Thanks a million.
+You're an angel.
+Thanks a bunch.
+I do not know how to thank you.
+That's so kind of you.Many thanks.
+I can't thank you enough.
+All my love and thanks to you.
+Words can't describe how thankful I am.
+Please accept my best thanks.
+Thanks a ton for helping out.
+Thank you for helping me.
+I appreciate it more then you will ever know.
+I don't have the words to thank you.
+No thanks. I have another ...
+Unfortunately, it's not a good time.
+I'd love to – but can't.
+I wish I could make it work.
+No thanks, I won't be able to make it.
+I'm sorry, I'm busy.
+I'm already booked.
+That's not going to work for me.
+Sounds fun, but I'm not available.
+I want to, but I'm unable to.
+I just don't have that to give right now.
+I'm not able to commit to that right now.
+It is not a good idea for me.
+Apologies, but I can't make it.
+I can't take on any more responsibilities.
+My body says yes, but my heart say no.
+Nope
+Maybe another time.
+I am not accepting anything else at this time.
+We appreciate the offer, but ...
+I'm not really into it, but thanks for asking!
+I'd rather not, thanks.
+Nah
+No way
+Sorry
+By no means
+I shall not
+Not likely
+No thanks
+Unfortunately not
+Not this time
+Not for me, thanks
+If only I could
+I'II need to bow out
+I adore you.
+You are all I want.
+I'm infatuated with you.
+You are my crush.
+You are a dream come true.
+I appreciate you.
+You inspire me.
+I worship you.
+You are my everything.
+I need you.
+I cherish you.
+You are the best.
+You are charming.
+I can't live without you.
+You set my heart on fire.
+I love being around you.
+I respect you.
+You are my reason for living.
+You are precious.
+You complete me.
+You're the love of my life.
+I can't stop thinking about you.
+I lost my heart on you.
+I dreamt about you last night.
+You bring happiness to rainy days.
+I've got you under my skin.
+You are the reason I'm alive.
+I want you.
+You are my reason for living.
+I lost my heart on you.
+You complete me.
+I am better because of you
+You are my dear.
+I'm affectionate for you.
+I adulate you.
+No one matters but you.
+I'm wild about you.
+You're all I see.
+Bravo
+Good
+The stuff of champions
+Fantastic
+I just love it
+First class
+Good work
+Nice job
+Far out
+You're doing well
+Cool
+Wow
+Neat
+Magnificient
+Polished performance
+Unbelievable
+Super!
+Keep it up!
+I like that
+Way to go
+Marvelous
+Clever
+Good for you
+Well, look at you go
+Tremendous
+I am impressed
+Sensational
+Felicitation
+You did it that time
+You are really improving.
+You make it look easy.
+You rock
+Greetings
+That is first class work
+Keep up the good work
+That is better than ever.
+You occupy my thoughts.
+I miss your laugh.
+I adore you.
+I'm infatuated with you.
+You crossed my mind.
+I appreciate you.
+i feel sad without you.
+You inspire me.
+I miss seeing your face.
+I cherish you.
+The words is not the same when you are away.
+You make my heart skip a beat.
+You're all I need.
+You stole my heart.
+I live for our love.
+I can't live without you.
+You set my heart on fire.
+I respect you.
+You give me wings to fly.
+I can't wait to see your beautiful face.
+I can't live without you.
+You fill my heart.
+I need you now.
+My life is meaningless without you.
+I miss your smile.
+You bring joy to my life.
+All I do is think of you.
+I love being around you.
+You are my reason for living.
+I value you.
+Your picture makes me smile.
+I want a lifetime with you.
+I hope I see you again.
+You are the reason I'm alive.
+I want you.
+You are my treasure.
+I adore you so much.
+You are precious.
+You complete me.
+I yearn for you.
+Your presence makes me a happy person.
+You're the love of my life.
+You are my world.
+You have been running through my head all night.
+I can't live without you.
+I'm yours.
+You are my sunshine.
+I long for you.
+You're everything to me.
+You're everything to me.
+You're the light of my life.
+I'm head over heels for you.
+I lost my heart on you.
+I can't take my eyes off you.
+You complete me.
+You've got it made!
+You've got your brain in gear today.
+Great!
+Congratulations!
+Couldn't have done it better myself.
+I've never seen anyone do it better.
+You've just about mastered that.
+That's an interesting way of looking at it.
+That's really nice.
+That's coming along nicely.
+Keep up the good work.
+You did it that time!
+It looks like you've put a lot of work into this.
+Super-Duper!
+Out of sight.
+Now that's what I call a fine job.
+Couldn't have done it better myself.
+Keep working on it; you're improving.
+Much better!
+That's better than ever.
+That was first class work.
+You're doing fine.
+That's a real work of art.
+You certainly did well today.
+Way to go.
+I like that.
+That's it.
+Marvelous!
+Cool!
+Tremendous!
+Fantastic!
+Excellent!
+You've got the hang of it!
+It's a classic.
+Right on!
+Keep on trying!Very interesting.
+That's coming along nicely.
+Terrific!
+Beautiful!
+You haven't missed a thing.
+Keep working on it. You're improving.
+Now you have it!
+You are learning fast.
+Good for you!
+Couldn't have done it better myself.
+Aren't you proud of yourself?
+One more time and you'll have it.
+You really make my job fun.
+That's the right way to do it.
+You're getting better every day.
+You must have been practicing.
+You did that very well.
+Fine!
+Nice going.
+You're really going to town.
+Outstanding!
+Fantastic!
+Tremendous!
+That's how to handle that.
+Now that's what I call a fine job.
+Nice going.
+You're really going to town.
+OUTSTANDING!
+FANTASTIC!
+TREMENDOUS!
+That's how to handle that.
+Now that's what I call a fine job.
+That's great.
+Right on!
+You're really improving.
+You're doing beautifully!
+SUPERB!
+Good remembering.
+You've got that down pat.
+You certainly did well today.
+That kind of work makes me happy.
+It's such a pleasure to teach when
+You work like that!
+I think you're doing the right thing.
+I'm looking for...
+I'd like to know...
+Do you know...?
+Could you tell me...?
+Can you tell me...?
+Do you have any idea...?
+I don't suppose you know...?
+I'm calling to find out...
+I wonder if someone could tell me...?
+Do you happen to know...?
+Have you got an idea of...?
+Don't suppose you (would) know...?
+Can I have ... please?
+Is this right way for ...?
+Would you mind...?
+Could anyone tell me...?
+I'm interested in...
+I wonder if you could tell me...?
+I was wondering...
