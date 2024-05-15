@@ -6,7 +6,7 @@ from firebase_admin import credentials, db
 import numpy as np
 from services.DQNAagent import *
 from concurrent.futures import ThreadPoolExecutor
-from flask import session
+from flask import session, render_template
 from firebase_handler import *
 
 
@@ -19,10 +19,14 @@ RANDOM_WORD_API_URL = ' https://random-word-form.herokuapp.com/random/noun?count
 translator = Translator(to_lang='ilo', model_path=EN_ILO_MODEL_DIRECTORY)
 
 
+@ai_blueprint.route('/')
+def index():
+    return render_template('login.html')
 
 
-
-
+@ai_blueprint.route('/mainpage')
+def main_page():
+    return render_template('mainpage.html');
 
 
 @ai_blueprint.route('/login', methods=['POST'])
