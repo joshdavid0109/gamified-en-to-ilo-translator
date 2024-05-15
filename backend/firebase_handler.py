@@ -4,7 +4,8 @@ from firebase_admin import credentials, db
 import json
 
 # Initialize Firebase
-cred = credentials.Certificate('../../flask_test/ai-database-a2089-firebase-adminsdk-bogd7-808afea2db.json')
+# cred = credentials.Certificate('../../flask_test/ai-database-a2089-firebase-adminsdk-bogd7-808afea2db.json')
+cred = credentials.Certificate('../../gamified-en-to-ilo-translator/ai-database-a2089-firebase-adminsdk-bogd7-808afea2db.json')
 firebase_admin.initialize_app(cred, {
     'databaseURL': 'https://ai-database-a2089-default-rtdb.asia-southeast1.firebasedatabase.app/'
 })
@@ -53,7 +54,7 @@ points_tiers = {
 }
 
 def updatePoints(points):
-    
+    return
 
 # Function to update tier based on points
 def update_tier(current_data, points):

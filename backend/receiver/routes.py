@@ -47,6 +47,27 @@ def login():
         return jsonify({"success": True})
     return jsonify(authentication_result)
 
+@ai_blueprint.route('/get_choices', methods=['GET'])
+def get_choices():
+    # data = request.json
+    # difficulty = data.get('difficulty')
+    # numofchoices = data.get('numofchoices')
+    words = get_random_words('medium')
+    correct_word = words[0]
+    translation_choices = words[1:]
+
+    correct_translation = translator.translate(correct_word)
+    with ThreadPoolExecutor() as executor:
+        choices = list(executor.map(translate_word, words))
+    choices.remove(correct_translation)
+    random.shuffle(choices)
+    choices.insert(random.randint(0, len(choices)), correct_translation)
+    return jsonify({
+                    "word": correct_word,
+                    "correct_answer": correct_translation,
+                    "choices": choices
+                }), 200
+
 @ai_blueprint.route('/logout')
 def logout():
     session.clear()

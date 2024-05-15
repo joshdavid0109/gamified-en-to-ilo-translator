@@ -1,6 +1,7 @@
 import firebase_admin, os, random, requests
 import numpy as np
 from translate import Translator
+import random
 
 EN_ILO_MODEL_DIRECTORY = '../models/opus-mt-ilo-en'
 ILO_EN_MODEL_DIRECTORY = '../models/opus-mt-en-ilo'
@@ -17,7 +18,11 @@ def get_random_words(difficulty):
     if difficulty == 'easy':
         RANDOM_WORD_API_URL = 'https://random-word-form.herokuapp.com/random/adjective?count=4'
     elif difficulty == 'medium':
-        RANDOM_WORD_API_URL = 'https://random-word-form.herokuapp.com/random/adjective?count=6'
+        # TODO CHANGE PATH
+        file_path = "C:/Users/franz/vscode/gam/gamified-en-to-ilo-translator/en_normalized.txt"
+        random_lines = get_random_lines(file_path, 4)
+        print(random_lines)
+        return random_lines
     elif difficulty == 'hard':
         RANDOM_WORD_API_URL = 'https://random-word-form.herokuapp.com/random/adjective?count=8'
     else:
@@ -49,3 +54,18 @@ def calculate_score(selected_translation, is_correct):
     #         score = -math.log(length, 2) * 5
             
     return int(score)
+
+
+
+def get_random_lines(file_path, n):
+    try:
+        with open(file_path, 'r', encoding='utf-8') as file:
+            lines = file.readlines()
+            random_lines = random.sample(lines, n)
+            return random_lines
+    except FileNotFoundError:
+        print(f"File '{file_path}' not found.")
+        return []
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        return []
