@@ -52,8 +52,7 @@ points_tiers = {
     (7501, 10000): 'Virtuoso'
 }
 
-def updatePoints(points):
-    
+
 
 # Function to update tier based on points
 def update_tier(current_data, points):
