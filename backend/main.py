@@ -3,7 +3,7 @@ from flask_cors import CORS
 from receiver.routes import ai_blueprint
 
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder="receiver/templates", static_folder="receiver/templates/assets")
 app.secret_key = "darrenpogi"
 CORS(app)
 CORS(app, resources={r"/*": {"origins": "*"}}) 
