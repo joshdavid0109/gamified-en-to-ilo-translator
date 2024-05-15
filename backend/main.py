@@ -4,7 +4,7 @@ from receiver.routes import ai_blueprint
 
 
 app = Flask(__name__, template_folder="receiver/templates", static_folder="receiver/templates/assets")
-app.secret_key = "darrenpogi"
+app.secret_key = "gamified-translator"
 CORS(app)
 CORS(app, resources={r"/*": {"origins": "*"}}) 
 # CORS(app, resources={r"/user": {"origins": "http://127.0.0.1:5500"}})

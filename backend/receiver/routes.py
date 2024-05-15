@@ -6,7 +6,7 @@ from firebase_admin import credentials, db
 import numpy as np
 from services.DQNAagent import *
 from concurrent.futures import ThreadPoolExecutor
-from flask import session, render_template
+from flask import session, render_template, url_for, redirect
 from firebase_handler import *
 
 
@@ -21,7 +21,12 @@ translator = Translator(to_lang='ilo', model_path=EN_ILO_MODEL_DIRECTORY)
 
 @ai_blueprint.route('/')
 def index():
-    return render_template('login.html')
+    if 'userid' not in session:
+        return render_template('login.html')
+    print(session['userid'])
+    print(session['username'])
+    print(session['points'])
+    return render_template('mainpage.html')
 
 
 @ai_blueprint.route('/mainpage')
@@ -38,8 +43,18 @@ def login():
     if not username or not password:
         return jsonify({"success": False, "error": "Missing username or password"})
 
-    authentication_result = authenticate_user(username, password)
-    return authentication_result, 200, {'Content-Type': 'application/json'}
+    authentication_result = json.loads(authenticate_user(username, password))
+    if authentication_result.get('success'):
+        session['userid'] = authentication_result['user_id']
+        session['username'] = authentication_result['username']
+        session['points'] = authentication_result['points']
+        return jsonify({"success": True})
+    return jsonify(authentication_result)
+
+@ai_blueprint.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('ai.index'))
 
 @ai_blueprint.route('/submitanswer', methods=['POST'])
 def submitanswer():
