@@ -1,4 +1,9 @@
-GET http://127.0.0.1:5000/get_choices
+POST http://127.0.0.1:5000/submitanswer
 Content-Type: application/json
 
 
+{
+    "selectedTranslation": "zzzz",
+    "isCorrect": "false",
+    "userId": "user0004"
+}

@@ -28,6 +28,7 @@ async function updateContent() {
     const data = await fetchData();
 
     if (data) {
+
         // Update word
         const wordElement = document.querySelector('h1[data-aos="fade-right"]');
         wordElement.textContent = data.word.trim(); // Trim any leading/trailing whitespace
@@ -38,13 +39,42 @@ async function updateContent() {
             button.textContent = data.choices[index];
             // Add event listener to check correctness
             button.addEventListener('click', () => {
+
+                console.log("an answer is clicked")
+                
+
                 if (button.textContent === data.correct_answer) {
-                    // Correct answer
+
+                    console.log("CORRECT ANSWER IS CLICKED?: " +data.correct_answer)
+                    getUserId()
+                    .then(userid => {
+                        console.log("My user ID is:", userid);
+                        const postData = {
+                            selectedTranslation: data.correct_answer,
+                            isCorrect: "true",
+                            userId: userid
+                        };
+                        submitAnswer(postData); // Call the submitAnswer function
+
+                    });
                     const modal = new bootstrap.Modal(document.getElementById('correctModal'));
                     modal.show();
+                    
                     setToLoading()
                     updateContent()
                 } else {
+
+                    console.log("WRONG ANSWER IS CLICKED?: " +data.correct_answer)
+                    getUserId()
+                    .then(userid => {
+                        console.log("My user ID is:", userid);
+                        const postData = {
+                            selectedTranslation: data.correct_answer,
+                            isCorrect: "false",
+                            userId: userid
+                        };
+                        submitAnswer(postData); // Call the submitAnswer function
+                    });
                     const modal = new bootstrap.Modal(document.getElementById('wrongModal'));
                     modal.show();
                     setToLoading()
@@ -73,3 +103,31 @@ function setToLoading() {
 
 // Call the updateContent function initially
 updateContent();
+
+async function getUserId(){
+    try {
+        const response = await fetch('http://127.0.0.1:5000/getuserid');
+        const data = await response.json();
+        return data.userid;
+    } catch (error) {
+        console.error('Error fetching user ID:', error);
+        return null;
+    }
+}
+
+async function submitAnswer(data) {
+    try {
+        const response = await fetch('http://127.0.0.1:5000/submitanswer', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+        
+        const responseData = await response.json();
+        console.log('Submission response:', responseData);
+    } catch (error) {
+        console.error('Error submitting answer:', error);
+    }
+}

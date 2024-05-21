@@ -53,9 +53,25 @@ points_tiers = {
     (7501, 10000): 'Virtuoso'
 }
 
-def updatePoints(points):
-    return
+def update_points(user_id, points):
+    try:
+        # Get a reference to the user's data
+        user_ref = db.reference(f'/users/{user_id}')
+        user_data = user_ref.get()
 
+        if not user_data:
+            return json.dumps({"success": False, "error": "User not found"})
+
+        # Update the points and tier
+        user_data = update_tier(user_data, points)
+
+        # Save the updated data back to the database
+        user_ref.update(user_data)
+
+        return json.dumps({"success": True, "user_id": user_id, "username": user_data['username'], "points": user_data['points'], "tier": user_data['tier']})
+    except Exception as e:
+        return json.dumps({"success": False, "error": str(e)})
+        
 # Function to update tier based on points
 def update_tier(current_data, points):
     if current_data is None:
@@ -73,9 +89,9 @@ def update_tier(current_data, points):
     return current_data
 
 # Example usage (galing sa user data)
-current_data = {'points': 20, 'tier': 'Beginner'}
-current_data = update_tier(current_data, 3)
-print(current_data)
+# current_data = {'points': 20, 'tier': 'Beginner'}
+# current_data = update_tier(current_data, 3)
+# print(current_data)
 
 def get_leaderboard():
     # Get a reference to the users node
