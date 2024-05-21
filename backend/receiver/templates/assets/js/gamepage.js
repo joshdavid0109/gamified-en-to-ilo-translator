@@ -65,7 +65,7 @@ async function updateContent() {
                                 modalBody.textContent = `Correct! You gained ${responseData.score} points.`;
 
                                 const pointz = document.getElementById("points");
-                                pointz.innerHTML = "Points: "+responseData.points
+                                pointz.innerHTML = "Points: "+responseData.points + " [" +responseData.tier+"] "
 
                                 const modal = new bootstrap.Modal(document.getElementById('correctModal'));
                                 modal.show();
@@ -97,7 +97,7 @@ async function updateContent() {
                                 modalBody.textContent = `Wrong! You lost ${responseData.score} points.`;
 
                                 const pointz = document.getElementById("points");
-                                pointz.innerHTML = "Points: "+responseData.points
+                                pointz.innerHTML = "Points: "+responseData.points + " [" +responseData.tier+"] "
 
                                 const modal = new bootstrap.Modal(document.getElementById('wrongModal'));
                                 modal.show();

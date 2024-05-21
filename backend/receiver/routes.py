@@ -44,6 +44,7 @@ def login():
         session['userid'] = authentication_result['user_id']
         session['username'] = authentication_result['username']
         session['points'] = authentication_result['points']
+        session['tier'] = authentication_result['tier']
         return jsonify({"success": True})
     return jsonify(authentication_result)
 
@@ -84,7 +85,7 @@ def aboutus():
     
 @ai_blueprint.route('/gamepage')
 def gamepage():
-    return render_template('gamepage.html', session_variable=session.get('userid'))
+    return render_template('gamepage.html', userid=session['userid'], points=session['points'], tier=session['tier'])
 
 # return poitns (+ or -)
 @ai_blueprint.route('/submitanswer', methods=['POST'])
