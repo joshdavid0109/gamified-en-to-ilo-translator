@@ -117,3 +117,8 @@ def get_user():
 def get_userid():
     userid = session.get('userid')
     return jsonify({'userid': userid})
+
+@ai_blueprint.route('/getpoints')
+def get_points():
+    points = session.get('points')
+    return jsonify({'points': points})

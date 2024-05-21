@@ -54,17 +54,30 @@ async function updateContent() {
                             isCorrect: "true",
                             userId: userid
                         };
-                        submitAnswer(postData); // Call the submitAnswer function
+                        submitAnswer(postData).then(responseData => {
+                            if (responseData) {
+                                console.log("Response data:", responseData);
+                                console.log("Points:", responseData.points);
+                                console.log("Score:", responseData.score);
+                                console.log("Tier:", responseData.tier);
 
+                                const modalBody = document.querySelector('#correctModal .modal-body p');
+                                modalBody.textContent = `Correct! You gained ${responseData.score} points.`;
+
+                                const pointz = document.getElementById("points");
+                                pointz.innerHTML = "Points: "+responseData.points
+
+                                const modal = new bootstrap.Modal(document.getElementById('correctModal'));
+                                modal.show();
+                            }
+                        });
                     });
-                    const modal = new bootstrap.Modal(document.getElementById('correctModal'));
-                    modal.show();
+
+                    
                     
                     setToLoading()
                     updateContent()
                 } else {
-
-                    console.log("WRONG ANSWER IS CLICKED?: " +data.correct_answer)
                     getUserId()
                     .then(userid => {
                         console.log("My user ID is:", userid);
@@ -73,10 +86,25 @@ async function updateContent() {
                             isCorrect: "false",
                             userId: userid
                         };
-                        submitAnswer(postData); // Call the submitAnswer function
+                        submitAnswer(postData).then(responseData => {
+                            if (responseData) {
+                                console.log("Response data:", responseData);
+                                console.log("Points:", responseData.points);
+                                console.log("Score:", responseData.score);
+                                console.log("Tier:", responseData.tier);
+
+                                const modalBody = document.querySelector('#wrongModal .modal-body p');
+                                modalBody.textContent = `Wrong! You lost ${responseData.score} points.`;
+
+                                const pointz = document.getElementById("points");
+                                pointz.innerHTML = "Points: "+responseData.points
+
+                                const modal = new bootstrap.Modal(document.getElementById('wrongModal'));
+                                modal.show();
+                            }
+                        });
                     });
-                    const modal = new bootstrap.Modal(document.getElementById('wrongModal'));
-                    modal.show();
+                    
                     setToLoading()
                     updateContent()
                 }
@@ -95,9 +123,6 @@ function setToLoading() {
     // Set word and round text content to "loading..."
     const wordElement = document.querySelector('h1[data-aos="fade-right"]');
     wordElement.textContent = 'loading...';
-
-    const roundElement = document.querySelector('p[data-aos="fade-right"]');
-    roundElement.textContent = 'round: loading...';
 }
 
 
@@ -115,6 +140,17 @@ async function getUserId(){
     }
 }
 
+async function getPoints(){
+    try {
+        const response = await fetch('http://127.0.0.1:5000/getpoints');
+        const data = await response.json();
+        return data.points;
+    } catch (error) {
+        console.error('Error fetching points:', error);
+        return null;
+    }
+}
+
 async function submitAnswer(data) {
     try {
         const response = await fetch('http://127.0.0.1:5000/submitanswer', {
@@ -127,6 +163,8 @@ async function submitAnswer(data) {
         
         const responseData = await response.json();
         console.log('Submission response:', responseData);
+        return responseData
+  
     } catch (error) {
         console.error('Error submitting answer:', error);
     }
