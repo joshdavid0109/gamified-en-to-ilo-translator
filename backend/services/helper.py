@@ -39,14 +39,15 @@ def get_word_embeddings(word):
 # Get random words with different difficulty levels
 def get_random_words(difficulty):
     if difficulty == 'easy':
-        RANDOM_WORD_API_URL = 'https://random-word-form.herokuapp.com/random/adjective?count=4'
+        #todo
+        return none
     elif difficulty == 'medium':
-        # TODO CHANGE PATH
         file_path = "services/en_normalized.txt"
         random_lines = get_random_lines(file_path, 4)
         print(random_lines)
         return random_lines
     elif difficulty == 'hard':
+        #todo
         RANDOM_WORD_API_URL = 'https://random-word-form.herokuapp.com/random/adjective?count=8'
     else:
         return None

@@ -124,3 +124,12 @@ def get_userid():
 def get_points():
     points = session.get('points')
     return jsonify({'points': points})
+
+@ai_blueprint.route('/updatepoints', methods=['POST'])
+def updatepoints():
+    data = request.json
+    
+    newpoints = data.get('points')
+    session['points'] = newpoints
+    print("new session points "+str(session['points']))
+    return jsonify({'points': session['points']}), 200

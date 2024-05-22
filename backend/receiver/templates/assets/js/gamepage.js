@@ -61,6 +61,8 @@ async function updateContent() {
                                 console.log("Score:", responseData.score);
                                 console.log("Tier:", responseData.tier);
 
+                                updateSessionPoints(responseData.points)
+
                                 const modalBody = document.querySelector('#correctModal .modal-body p');
                                 modalBody.textContent = `Correct! You gained ${responseData.score} points.`;
 
@@ -92,6 +94,8 @@ async function updateContent() {
                                 console.log("Points:", responseData.points);
                                 console.log("Score:", responseData.score);
                                 console.log("Tier:", responseData.tier);
+
+                                updateSessionPoints(responseData.points)
 
                                 const modalBody = document.querySelector('#wrongModal .modal-body p');
                                 modalBody.textContent = `Wrong! You lost ${responseData.score} points.`;
@@ -148,6 +152,27 @@ async function getPoints(){
     } catch (error) {
         console.error('Error fetching points:', error);
         return null;
+    }
+}
+
+async function updateSessionPoints(numPoints){
+    try {
+        const response = await fetch('http://127.0.0.1:5000/updatepoints', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                points: numPoints,
+            }),
+        });
+
+        const responseData = await response.json();
+        console.log('res:', responseData);
+        return responseData
+
+    } catch (error) {
+        console.error('Error submitting answer:', error);
     }
 }
 
