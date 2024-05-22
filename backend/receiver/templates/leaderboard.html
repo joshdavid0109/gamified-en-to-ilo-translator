@@ -16,7 +16,22 @@
     <link rel="stylesheet" href="assets/css/sticky-dark-top-nav-with-dropdown.css">
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
-
+<style>
+    .card-text {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-weight: bold;
+    }
+    .card-rank {
+        font-weight: bold;
+    }
+    .card-username {
+        font-weight: bold;
+        flex-grow: 1;
+        text-align: center;
+    }
+</style>
 <body>
     <div>
         <header>
@@ -37,51 +52,21 @@
             <div class="bg-success d-flex align-items-center" style="height: 100vh;background: radial-gradient(rgb(8,78,71) 0%, rgb(5,47,43) 100%), rgb(46,47,46);">
                 <div class="container">
                     <h1 class="text-center text-light" data-aos="fade-down" data-aos-duration="950">Leaderboard</h1>
-                    <div class="row" data-aos="fade-down" data-aos-duration="950" data-aos-delay="300" style="margin: 1%;padding: 1%;">
+                    {% for user in ranking %}
+                    <div class="row" data-aos="fade-down" data-aos-duration="950" data-aos-delay="{{ 600 + (loop.index0 * 300) }}" style="margin: 1%;padding: 1%;">
                         <div class="col">
                             <div class="card">
                                 <div class="card-body">
-                                    <p class="card-text"><i class="fa fa-star"></i>&nbsp;1 Darren Franz 5000</p>
+                                    <p class="card-text">
+                                        <span class="card-rank"><i class="fa fa-star"></i>&nbsp;{{ user.rank }}</span>
+                                        <span class="card-username">{{ user.username }}</span>
+                                        <span class="card-points">{{ user.points }}</span>
+                                    </p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row" data-aos="fade-down" data-aos-duration="950" data-aos-delay="600" style="margin: 1%;padding: 1%;">
-                        <div class="col">
-                            <div class="card">
-                                <div class="card-body">
-                                    <p class="card-text">1 Darren Franz 5000<br></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" data-aos="fade-down" data-aos-duration="950" data-aos-delay="900" style="margin: 1%;padding: 1%;">
-                        <div class="col">
-                            <div class="card">
-                                <div class="card-body">
-                                    <p class="card-text">&nbsp;1 Darren Franz 5000<br></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" data-aos="fade-down" data-aos-duration="950" data-aos-delay="1200" style="margin: 1%;padding: 1%;">
-                        <div class="col">
-                            <div class="card">
-                                <div class="card-body">
-                                    <p class="card-text">1 Darren Franz 5000<br></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row" data-aos="fade-down" data-aos-duration="950" data-aos-delay="1500" style="margin: 1%;padding: 1%;">
-                        <div class="col">
-                            <div class="card">
-                                <div class="card-body">
-                                    <p class="card-text">1 Darren Franz 5000<br></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </header>

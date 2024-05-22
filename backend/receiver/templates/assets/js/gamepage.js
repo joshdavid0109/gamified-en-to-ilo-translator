@@ -28,6 +28,7 @@ async function updateContent() {
     const data = await fetchData();
 
     if (data) {
+
         // Update word
         const wordElement = document.querySelector('h1[data-aos="fade-right"]');
         wordElement.textContent = data.word.trim(); // Trim any leading/trailing whitespace
@@ -38,15 +39,76 @@ async function updateContent() {
             button.textContent = data.choices[index];
             // Add event listener to check correctness
             button.addEventListener('click', () => {
+
+                console.log("an answer is clicked")
+                
+
                 if (button.textContent === data.correct_answer) {
-                    // Correct answer
-                    const modal = new bootstrap.Modal(document.getElementById('correctModal'));
-                    modal.show();
+
+                    console.log("CORRECT ANSWER IS CLICKED?: " +data.correct_answer)
+                    getUserId()
+                    .then(userid => {
+                        console.log("My user ID is:", userid);
+                        const postData = {
+                            selectedTranslation: data.correct_answer,
+                            isCorrect: "true",
+                            userId: userid
+                        };
+                        submitAnswer(postData).then(responseData => {
+                            if (responseData) {
+                                console.log("Response data:", responseData);
+                                console.log("Points:", responseData.points);
+                                console.log("Score:", responseData.score);
+                                console.log("Tier:", responseData.tier);
+
+                                updateSessionPoints(responseData.points)
+
+                                const modalBody = document.querySelector('#correctModal .modal-body p');
+                                modalBody.textContent = `Correct! You gained ${responseData.score} points.`;
+
+                                const pointz = document.getElementById("points");
+                                pointz.innerHTML = "Points: "+responseData.points + " [" +responseData.tier+"] "
+
+                                const modal = new bootstrap.Modal(document.getElementById('correctModal'));
+                                modal.show();
+                            }
+                        });
+                    });
+
+                    
+                    
                     setToLoading()
                     updateContent()
                 } else {
-                    const modal = new bootstrap.Modal(document.getElementById('wrongModal'));
-                    modal.show();
+                    getUserId()
+                    .then(userid => {
+                        console.log("My user ID is:", userid);
+                        const postData = {
+                            selectedTranslation: data.correct_answer,
+                            isCorrect: "false",
+                            userId: userid
+                        };
+                        submitAnswer(postData).then(responseData => {
+                            if (responseData) {
+                                console.log("Response data:", responseData);
+                                console.log("Points:", responseData.points);
+                                console.log("Score:", responseData.score);
+                                console.log("Tier:", responseData.tier);
+
+                                updateSessionPoints(responseData.points)
+
+                                const modalBody = document.querySelector('#wrongModal .modal-body p');
+                                modalBody.textContent = `Wrong! You lost ${responseData.score} points.`;
+
+                                const pointz = document.getElementById("points");
+                                pointz.innerHTML = "Points: "+responseData.points + " [" +responseData.tier+"] "
+
+                                const modal = new bootstrap.Modal(document.getElementById('wrongModal'));
+                                modal.show();
+                            }
+                        });
+                    });
+                    
                     setToLoading()
                     updateContent()
                 }
@@ -65,11 +127,70 @@ function setToLoading() {
     // Set word and round text content to "loading..."
     const wordElement = document.querySelector('h1[data-aos="fade-right"]');
     wordElement.textContent = 'loading...';
-
-    const roundElement = document.querySelector('p[data-aos="fade-right"]');
-    roundElement.textContent = 'round: loading...';
 }
 
 
 // Call the updateContent function initially
 updateContent();
+
+async function getUserId(){
+    try {
+        const response = await fetch('http://127.0.0.1:5000/getuserid');
+        const data = await response.json();
+        return data.userid;
+    } catch (error) {
+        console.error('Error fetching user ID:', error);
+        return null;
+    }
+}
+
+async function getPoints(){
+    try {
+        const response = await fetch('http://127.0.0.1:5000/getpoints');
+        const data = await response.json();
+        return data.points;
+    } catch (error) {
+        console.error('Error fetching points:', error);
+        return null;
+    }
+}
+
+async function updateSessionPoints(numPoints){
+    try {
+        const response = await fetch('http://127.0.0.1:5000/updatepoints', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                points: numPoints,
+            }),
+        });
+
+        const responseData = await response.json();
+        console.log('res:', responseData);
+        return responseData
+
+    } catch (error) {
+        console.error('Error submitting answer:', error);
+    }
+}
+
+async function submitAnswer(data) {
+    try {
+        const response = await fetch('http://127.0.0.1:5000/submitanswer', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+        
+        const responseData = await response.json();
+        console.log('Submission response:', responseData);
+        return responseData
+  
+    } catch (error) {
+        console.error('Error submitting answer:', error);
+    }
+}

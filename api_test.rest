@@ -1,4 +1,7 @@
-GET http://127.0.0.1:5000/get_choices
+POST http://127.0.0.1:5000/updatepoints
 Content-Type: application/json
 
 
+{
+    "points": 900
+}

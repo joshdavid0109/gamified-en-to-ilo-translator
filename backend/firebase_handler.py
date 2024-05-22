@@ -24,7 +24,7 @@ def authenticate_user(username, password):
         user_id = list(user_ref.keys())[0]
         user_data = user_ref[user_id]
         if user_data['password'] == password:
-            return json.dumps({"success": True, "user_id": user_id, "username": user_data['username'] , "points": user_data['points'] })
+            return json.dumps({"success": True, "user_id": user_id, "username": user_data['username'] , "points": user_data['points'], "tier": user_data['tier'] })
         else:
             return json.dumps({"success": False, "error": "Incorrect password"})
     except Exception as e:
@@ -53,9 +53,25 @@ points_tiers = {
     (7501, 10000): 'Virtuoso'
 }
 
-def updatePoints(points):
-    return
+def update_points(user_id, points):
+    try:
+        # Get a reference to the user's data
+        user_ref = db.reference(f'/users/{user_id}')
+        user_data = user_ref.get()
 
+        if not user_data:
+            return json.dumps({"success": False, "error": "User not found"})
+
+        # Update the points and tier
+        user_data = update_tier(user_data, points)
+
+        # Save the updated data back to the database
+        user_ref.update(user_data)
+
+        return json.dumps({"success": True, "user_id": user_id, "username": user_data['username'], "points": user_data['points'], "tier": user_data['tier']})
+    except Exception as e:
+        return json.dumps({"success": False, "error": str(e)})
+        
 # Function to update tier based on points
 def update_tier(current_data, points):
     if current_data is None:
@@ -73,9 +89,9 @@ def update_tier(current_data, points):
     return current_data
 
 # Example usage (galing sa user data)
-current_data = {'points': 20, 'tier': 'Beginner'}
-current_data = update_tier(current_data, 3)
-print(current_data)
+# current_data = {'points': 20, 'tier': 'Beginner'}
+# current_data = update_tier(current_data, 3)
+# print(current_data)
 
 def get_leaderboard():
     # Get a reference to the users node
@@ -92,7 +108,14 @@ def get_leaderboard():
     )[:5]
 
     # Print leaderboard
-    for _, user_data in sorted_users:
+    leaderboard = []
+    for rank, (_, user_data) in enumerate(sorted_users, start=1):
         points = user_data if isinstance(user_data, int) else user_data.get('points', 0)
         username = user_data.get('username', 'Unknown') if isinstance(user_data, dict) else 'Unknown'
-        print(f"User: {username}, Points: {points}")
+        leaderboard.append({
+            'rank': rank,
+            'username': username,
+            'points': points
+        })
+
+    return json.dumps(leaderboard)
