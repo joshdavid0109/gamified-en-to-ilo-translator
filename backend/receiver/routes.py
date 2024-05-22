@@ -77,7 +77,8 @@ def logout():
 
 @ai_blueprint.route('/leaderboards')
 def leaderboards():
-    return render_template('leaderboard.html')
+    ranking = json.loads(get_leaderboard())
+    return render_template('leaderboard.html', ranking=ranking)
 
 @ai_blueprint.route('/aboutus')
 def aboutus():

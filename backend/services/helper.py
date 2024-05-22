@@ -3,7 +3,6 @@ import numpy as np
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 import random
 
-# Global variables to store tokenizer and model
 en_ilo_tokenizer = None
 en_ilo_model = None
 
@@ -23,8 +22,10 @@ def translate_text(tokenizer, model, text):
     return translated_text
 
 #load models and tokenizers
+models_dir = os.path.join('..', 'models', 'fine_tuned-opus-mt-en-ilo')
 # ilo_en_tokenizer, ilo_en_model = load_model_and_tokenizer("../models/opus-mt-ilo-en/")
 en_ilo_tokenizer, en_ilo_model = load_model_and_tokenizer("C:/Users/franz/vscode/gam/gamified-en-to-ilo-translator/backend/models/fine_tuned-opus-mt-en-ilo")
+# en_ilo_tokenizer, en_ilo_model = load_model_and_tokenizer(models_dir)
 
 EN_ILO_MODEL_DIRECTORY = '../models/opus-mt-ilo-en'
 ILO_EN_MODEL_DIRECTORY = '../models/opus-mt-en-ilo'

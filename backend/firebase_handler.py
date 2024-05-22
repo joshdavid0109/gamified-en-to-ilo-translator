@@ -108,7 +108,14 @@ def get_leaderboard():
     )[:5]
 
     # Print leaderboard
-    for _, user_data in sorted_users:
+    leaderboard = []
+    for rank, (_, user_data) in enumerate(sorted_users, start=1):
         points = user_data if isinstance(user_data, int) else user_data.get('points', 0)
         username = user_data.get('username', 'Unknown') if isinstance(user_data, dict) else 'Unknown'
-        print(f"User: {username}, Points: {points}")
+        leaderboard.append({
+            'rank': rank,
+            'username': username,
+            'points': points
+        })
+
+    return json.dumps(leaderboard)
